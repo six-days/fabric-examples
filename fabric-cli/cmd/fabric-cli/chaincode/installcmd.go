@@ -8,11 +8,13 @@ package chaincode
 
 import (
 	"fmt"
+	"github.com/hyperledger/fabric-sdk-go/pkg/fab/ccpackager/gopackager"
+	"github.com/hyperledger/fabric-sdk-go/pkg/fab/ccpackager/javapackager"
+	"github.com/hyperledger/fabric-sdk-go/pkg/fab/resource"
 	"net/http"
 
 	"github.com/hyperledger/fabric-sdk-go/pkg/client/resmgmt"
 	"github.com/hyperledger/fabric-sdk-go/pkg/common/providers/fab"
-	"github.com/hyperledger/fabric-sdk-go/pkg/fab/ccpackager/gopackager"
 	"github.com/pkg/errors"
 	"github.com/securekey/fabric-examples/fabric-cli/cmd/fabric-cli/action"
 	cliconfig "github.com/securekey/fabric-examples/fabric-cli/cmd/fabric-cli/config"
@@ -56,6 +58,7 @@ func getInstallCmd() *cobra.Command {
 	cliconfig.InitChannelID(flags)
 	cliconfig.InitChaincodeID(flags)
 	cliconfig.InitChaincodePath(flags)
+	cliconfig.InitChaincodeType(flags)
 	cliconfig.InitChaincodeVersion(flags)
 	cliconfig.InitGoPath(flags)
 	return installCmd
@@ -88,13 +91,16 @@ func (action *installAction) invoke() error {
 }
 
 func (action *installAction) installChaincode(orgID string, targets []fab.Peer) error {
-
 	resMgmtClient, err := action.ResourceMgmtClientForOrg(orgID)
 	if err != nil {
 		return err
 	}
-
-	ccPkg, err := gopackager.NewCCPackage(cliconfig.Config().ChaincodePath(), cliconfig.Config().GoPath())
+	var ccPkg *resource.CCPackage
+	if cliconfig.Config().ChaincodeType() == "go" {
+		ccPkg, err = gopackager.NewCCPackage(cliconfig.Config().ChaincodePath(), cliconfig.Config().GoPath())
+	} else {
+		ccPkg, err = javapackager.NewCCPackage(cliconfig.Config().ChaincodePath())
+	}
 	if err != nil {
 		return err
 	}

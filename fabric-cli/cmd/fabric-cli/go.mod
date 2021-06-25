@@ -7,8 +7,8 @@ module github.com/securekey/fabric-examples/fabric-cli/cmd/fabric-cli
 require (
 	github.com/cloudflare/cfssl v0.0.0-20180323000720-5d63dbd981b5 // indirect
 	github.com/golang/protobuf v1.3.2
-	github.com/hyperledger/fabric-protos-go v0.0.0-20191121202242-f5500d5e3e85
-	github.com/hyperledger/fabric-sdk-go v1.0.0-beta1.0.20200106161850-8f3d32c9d1a6
+	github.com/hyperledger/fabric-protos-go v0.0.0-20191204195335-3ddf3f16d6cf
+	github.com/hyperledger/fabric-sdk-go v1.0.0-beta2
 	github.com/inconshreveable/mousetrap v1.0.0 // indirect
 	github.com/magiconair/properties v1.8.0 // indirect
 	github.com/mitchellh/mapstructure v0.0.0-20180511142126-bb74f1db0675 // indirect

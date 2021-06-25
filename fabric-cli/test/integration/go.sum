@@ -51,6 +51,7 @@ github.com/hyperledger/fabric-sdk-go v1.0.0-alpha5.0.20190827185549-6c3f788a32f8
 github.com/hyperledger/fabric-sdk-go v1.0.0-beta1.0.20190930220855-cea2ffaf627c/go.mod h1:i8yJ9t8i1fGe7opUcq6uESxhruMJNXlc+Rx9ooBZsYg=
 github.com/hyperledger/fabric-sdk-go v1.0.0-beta1.0.20191219180315-e1055f391525/go.mod h1:/s224b8NLvOJOCIqBvWd9O6u7GE33iuIOT6OfcTE1OE=
 github.com/hyperledger/fabric-sdk-go v1.0.0-beta1.0.20200106161850-8f3d32c9d1a6/go.mod h1:/s224b8NLvOJOCIqBvWd9O6u7GE33iuIOT6OfcTE1OE=
+github.com/hyperledger/fabric-sdk-go v1.0.0-beta2/go.mod h1:/s224b8NLvOJOCIqBvWd9O6u7GE33iuIOT6OfcTE1OE=
 github.com/inconshreveable/mousetrap v1.0.0 h1:Z8tu5sraLXCXIcARxBp/8cbvlwVa7Z1NHg9XEKhtSvM=
 github.com/inconshreveable/mousetrap v1.0.0/go.mod h1:PxqpIevigyE2G7u3NXJIT2ANytuPF1OarO4DADm73n8=
 github.com/kr/logfmt v0.0.0-20140226030751-b84e30acd515 h1:T+h1c/A9Gawja4Y9mFVWj2vyii2bbUNDw3kt9VxK2EY=

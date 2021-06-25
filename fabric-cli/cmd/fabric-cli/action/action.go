@@ -40,7 +40,7 @@ import (
 )
 
 const (
-	defaultUser = "User1" // pre-enrolled user
+	defaultUser = "Admin" // pre-enrolled user
 	adminUser   = "Admin"
 )
 
@@ -82,19 +82,18 @@ func (action *Action) Initialize(flags *pflag.FlagSet) error {
 		}
 		opts = append(opts, fabsdk.WithServicePkg(svcPackage))
 	}
-	opts = append(opts, fabsdk.WithCorePkg(&cryptoSuiteProviderFactory{}))
+	//opts = append(opts, fabsdk.WithCorePkg(&cryptoSuiteProviderFactory{}))
 
 	sdk, err := fabsdk.New(cliconfig.Provider(), opts...)
 	if err != nil {
 		return errors.Errorf("Error initializing SDK: %s", err)
 	}
-	action.sdk = sdk
 
-	ctx, err := sdk.Context()()
+	ctx, err := sdk.Context(fabsdk.WithUser("Admin"), fabsdk.WithOrg("org-orderer"))()
 	if err != nil {
 		return errors.WithMessage(err, "Error creating anonymous provider")
 	}
-
+	action.sdk = sdk
 	action.endpointConfig = ctx.EndpointConfig()
 
 	networkConfig := action.endpointConfig.NetworkConfig()

@@ -76,6 +76,10 @@ const (
 	chaincodePathDescription = "The chaincode path"
 	defaultChaincodePath     = ""
 
+	ChaincodeTypeFlag         = "cct"
+	chaincodeTypePDescription = "The chaincode type"
+	defaultChaincodeType      = "go"
+
 	ConfigFileFlag        = "config"
 	configFileDescription = "The path of the config.yaml file"
 	defaultConfigFile     = ""
@@ -205,6 +209,7 @@ type options struct {
 	channelID            string
 	chaincodeID          string
 	chaincodePath        string
+	chaincodeType        string
 	chaincodeVersion     string
 	peerURL              string
 	ordererURL           string
@@ -418,6 +423,17 @@ func (c *CLIConfig) ChaincodePath() string {
 func InitChaincodePath(flags *pflag.FlagSet, defaultValueAndDescription ...string) {
 	defaultValue, description := getDefaultValueAndDescription(defaultChaincodePath, chaincodePathDescription, defaultValueAndDescription...)
 	flags.StringVar(&opts.chaincodePath, ChaincodePathFlag, defaultValue, description)
+}
+
+// ChaincodeType returns the source path of the chaincode type
+func (c *CLIConfig) ChaincodeType() string {
+	return opts.chaincodeType
+}
+
+// InitChaincodeType initializes the chaincode type
+func InitChaincodeType(flags *pflag.FlagSet, defaultValueAndDescription ...string) {
+	defaultValue, description := getDefaultValueAndDescription(defaultChaincodeType, chaincodeTypePDescription, defaultValueAndDescription...)
+	flags.StringVar(&opts.chaincodeType, ChaincodeTypeFlag, defaultValue, description)
 }
 
 // ChaincodeVersion returns the version of the chaincode
