@@ -46,7 +46,7 @@ const (
 const (
 	UserFlag        = "user"
 	userDescription = "The user"
-	defaultUser     = ""
+	defaultUser     = "Admin"
 
 	PasswordFlag        = "pw"
 	passwordDescription = "The password of the user"

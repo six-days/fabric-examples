@@ -40,7 +40,7 @@ import (
 )
 
 const (
-	defaultUser = "Admin" // pre-enrolled user
+	defaultUser = "User1" // pre-enrolled user
 	adminUser   = "Admin"
 )
 
@@ -89,7 +89,7 @@ func (action *Action) Initialize(flags *pflag.FlagSet) error {
 		return errors.Errorf("Error initializing SDK: %s", err)
 	}
 
-	ctx, err := sdk.Context(fabsdk.WithUser("Admin"), fabsdk.WithOrg("org-orderer"))()
+	ctx, err := sdk.Context(fabsdk.WithUser(cliconfig.Config().UserName()), fabsdk.WithOrg(cliconfig.Config().ChannelID()))()
 	if err != nil {
 		return errors.WithMessage(err, "Error creating anonymous provider")
 	}
@@ -426,7 +426,7 @@ func (action *Action) GetOrgID(mspID string) (string, error) {
 func (action *Action) User() (mspapi.SigningIdentity, error) {
 	userName := cliconfig.Config().UserName()
 	if userName == "" {
-		userName = defaultUser
+		userName = adminUser
 	}
 	return action.OrgUser(action.OrgID(), userName)
 }
